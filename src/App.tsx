@@ -86,7 +86,7 @@ const products: Product[] = [
     name: "Bold Logo Tee",
     price: "$45.00",
     category: "tees",
-    image: assetUrl("assets/products/bold-logo-tee.png"),
+    image: assetUrl("assets/products/bold-logo-tee-full.png"),
     tag: "LIMITED",
     colors: ["#050505", PINK],
     rating: "4.7 (150)",

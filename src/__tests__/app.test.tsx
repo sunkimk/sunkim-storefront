@@ -77,6 +77,15 @@ describe("SUNKIM storefront", () => {
     expect(categoryChips).toHaveLength(8);
   });
 
+  it("uses the complete product asset for the Bold Logo Tee card", () => {
+    const { container } = render(<App />);
+    const boldLogoButton = screen.getByRole("button", { name: /view bold logo tee/i });
+    const boldLogoImage = boldLogoButton.querySelector("img");
+
+    expect(boldLogoImage?.getAttribute("src")).toBe(`${import.meta.env.BASE_URL}assets/products/bold-logo-tee-full.png`);
+    expect(container.querySelector('img[src$="bold-logo-tee.png"]')).not.toBeInTheDocument();
+  });
+
   it("adds products to the cart from product cards", async () => {
     const user = userEvent.setup();
     render(<App />);
