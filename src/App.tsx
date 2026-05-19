@@ -680,7 +680,7 @@ function CategoryRail({ selected, onSelect }: { selected: string; onSelect: (cat
     <div className="category-rail" role="list" aria-label="Product categories">
       {categories.map((category) => (
         <button
-          className={`chip ${selected === category.key ? "is-selected" : ""}`}
+          className={`chip category-chip ${selected === category.key ? "is-selected" : ""}`}
           key={category.key}
           type="button"
           aria-pressed={selected === category.key}
@@ -865,10 +865,12 @@ function GuaranteeStrip({ compact = false }: { compact?: boolean }) {
   return (
     <section className={`guarantee-strip ${compact ? "is-compact" : ""}`}>
       {visible.map((item) => (
-        <div key={item.label}>
-          {item.burst ? <Burst /> : <Icon icon={item.icon} size={32} />}
-          <strong>{item.label}</strong>
-          <span>{item.value}</span>
+        <div className="guarantee-item" key={item.label}>
+          <span className="guarantee-icon">{item.burst ? <Burst /> : <Icon icon={item.icon} size={32} />}</span>
+          <span className="guarantee-copy">
+            <strong>{item.label}</strong>
+            <span>{item.value}</span>
+          </span>
         </div>
       ))}
     </section>
@@ -890,7 +892,7 @@ function DiscoverRail() {
       <SectionHeader title="Discover Your Style" action="Explore all" />
       <div className="category-rail discover-rail">
         {items.map((item) => (
-          <button className="chip" type="button" key={item.label}>
+          <button className="chip discover-chip" type="button" key={item.label}>
             {item.icon ? <Icon icon={item.icon} /> : <Burst size="tiny" tone={item.tone === "blue" ? "blue" : "pink"} />}
             {item.label}
           </button>

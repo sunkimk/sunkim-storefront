@@ -49,6 +49,34 @@ describe("SUNKIM storefront", () => {
     expect(screen.getByText("2", { selector: "output" })).toBeInTheDocument();
   });
 
+  it("groups compact guarantee icons to the left of their text content", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<App />);
+
+    await user.click(screen.getAllByRole("button", { name: /view starburst hoodie/i })[0]);
+
+    const compactItems = container.querySelectorAll(".guarantee-strip.is-compact .guarantee-item");
+    expect(compactItems).toHaveLength(3);
+    compactItems.forEach((item) => {
+      expect(item.firstElementChild).toHaveClass("guarantee-icon");
+      expect(item.children[1]).toHaveClass("guarantee-copy");
+    });
+  });
+
+  it("marks discover chips for adaptive container-based sizing", () => {
+    const { container } = render(<App />);
+    const discoverChips = container.querySelectorAll(".discover-rail .discover-chip");
+
+    expect(discoverChips).toHaveLength(6);
+  });
+
+  it("marks product category chips for adaptive container-based sizing", () => {
+    const { container } = render(<App />);
+    const categoryChips = container.querySelectorAll('[aria-label="Product categories"] .category-chip');
+
+    expect(categoryChips).toHaveLength(8);
+  });
+
   it("adds products to the cart from product cards", async () => {
     const user = userEvent.setup();
     render(<App />);

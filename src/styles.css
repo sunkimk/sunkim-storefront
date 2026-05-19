@@ -672,24 +672,20 @@ img {
 }
 
 .category-rail {
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 10px;
   margin: 26px 0 32px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.category-rail::-webkit-scrollbar {
-  display: none;
+  overflow: visible;
 }
 
 .chip {
-  display: inline-flex;
-  flex: 0 0 auto;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-width: auto;
+  width: 100%;
+  min-width: 0;
   height: 46px;
   padding: 0 12px;
   border: 1.5px solid #111;
@@ -975,8 +971,18 @@ img {
 }
 
 .discover-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
   margin-top: 0;
   margin-bottom: 0;
+  overflow: visible;
+}
+
+.discover-chip {
+  width: 100%;
+  min-width: 0;
+  padding: 0 18px;
 }
 
 .shop-hero {
@@ -1229,32 +1235,47 @@ img {
   margin: 34px 8px;
 }
 
-.guarantee-strip div {
-  display: grid;
-  grid-template-columns: 50px 1fr;
+.guarantee-strip .guarantee-item {
+  display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 16px;
   min-height: 58px;
   padding: 0 30px;
   border-right: 1px solid #e5e5e8;
 }
 
-.guarantee-strip div:last-child {
+.guarantee-strip .guarantee-item:last-child {
   border-right: 0;
 }
 
+.guarantee-icon {
+  display: grid;
+  width: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+}
+
+.guarantee-copy {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
 .guarantee-strip strong {
-  align-self: end;
+  display: block;
   font-size: 13px;
   font-weight: 950;
   text-transform: uppercase;
 }
 
 .guarantee-strip span {
-  grid-column: 2;
-  align-self: start;
   color: #55565c;
   font-size: 12px;
+}
+
+.guarantee-strip strong,
+.guarantee-strip .guarantee-copy > span {
+  line-height: 1.15;
 }
 
 .breadcrumbs {
@@ -1664,7 +1685,7 @@ img {
   }
 
   .stat:nth-child(2),
-  .guarantee-strip div:nth-child(2) {
+  .guarantee-strip .guarantee-item:nth-child(2) {
     border-right: 0;
   }
 
@@ -1790,14 +1811,14 @@ img {
   }
 
   .stat,
-  .guarantee-strip div,
+  .guarantee-strip .guarantee-item,
   .spec-cards div {
     border-right: 0;
     border-bottom: 1px solid #e5e5e8;
   }
 
   .stat:last-child,
-  .guarantee-strip div:last-child,
+  .guarantee-strip .guarantee-item:last-child,
   .spec-cards div:last-child {
     border-bottom: 0;
   }
@@ -1807,7 +1828,7 @@ img {
   }
 
   .chip {
-    min-width: 132px;
+    min-width: 0;
     height: 48px;
     font-size: 13px;
   }
