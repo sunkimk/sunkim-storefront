@@ -13,6 +13,14 @@ describe("SUNKIM storefront", () => {
     expect(screen.getByRole("button", { name: /hoodies/i })).toHaveAttribute("aria-pressed", "false");
   });
 
+  it("builds public image URLs from the configured Vite base path", () => {
+    const { container } = render(<App />);
+    const imageSources = Array.from(container.querySelectorAll("img")).map((image) => image.getAttribute("src"));
+
+    expect(imageSources).toContain(`${import.meta.env.BASE_URL}assets/products/starburst-hoodie.png`);
+    expect(imageSources).not.toContain("/assets/products/starburst-hoodie.png");
+  });
+
   it("switches between collection and product detail views from visible controls", async () => {
     const user = userEvent.setup();
     render(<App />);

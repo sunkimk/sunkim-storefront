@@ -56,13 +56,15 @@ type Category = {
 const PINK = "#ff1b98";
 const BLUE = "#2334ff";
 
+const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
 const products: Product[] = [
   {
     id: "starburst-hoodie",
     name: "Starburst Hoodie",
     price: "$89.00",
     category: "hoodies",
-    image: "/assets/products/starburst-hoodie.png",
+    image: assetUrl("assets/products/starburst-hoodie.png"),
     tag: "NEW",
     colors: ["#050505", PINK, BLUE],
     rating: "4.9 (320)",
@@ -73,7 +75,7 @@ const products: Product[] = [
     name: "Electric Jacket",
     price: "$129.00",
     category: "jackets",
-    image: "/assets/products/electric-jacket.png",
+    image: assetUrl("assets/products/electric-jacket.png"),
     tag: "BEST SELLER",
     colors: [PINK, BLUE, "#050505"],
     rating: "4.8 (210)",
@@ -84,7 +86,7 @@ const products: Product[] = [
     name: "Bold Logo Tee",
     price: "$45.00",
     category: "tees",
-    image: "/assets/products/bold-logo-tee.png",
+    image: assetUrl("assets/products/bold-logo-tee.png"),
     tag: "LIMITED",
     colors: ["#050505", PINK],
     rating: "4.7 (150)",
@@ -95,7 +97,7 @@ const products: Product[] = [
     name: "Stage Ready Sneaker",
     price: "$149.00",
     category: "footwear",
-    image: "/assets/products/stage-ready-sneaker.png",
+    image: assetUrl("assets/products/stage-ready-sneaker.png"),
     tag: "NEW",
     colors: ["#050505", PINK, BLUE],
     rating: "4.9 (185)",
@@ -106,7 +108,7 @@ const products: Product[] = [
     name: "Crossbody Bag",
     price: "$49.00",
     category: "accessories",
-    image: "/assets/products/crossbody-bag.png",
+    image: assetUrl("assets/products/crossbody-bag.png"),
     tag: "LIMITED",
     colors: ["#050505", PINK],
     rating: "4.8 (120)",
@@ -117,7 +119,7 @@ const products: Product[] = [
     name: "Sunkim Patch Cap",
     price: "$35.00",
     category: "accessories",
-    image: "/assets/products/sunkim-patch-cap.png",
+    image: assetUrl("assets/products/sunkim-patch-cap.png"),
     tag: "NEW",
     colors: ["#050505", PINK, BLUE],
     rating: "4.7 (98)",
@@ -128,7 +130,7 @@ const products: Product[] = [
     name: "Starburst Pants",
     price: "$79.00",
     category: "pants",
-    image: "/assets/products/starburst-pants.png",
+    image: assetUrl("assets/products/starburst-pants.png"),
     tag: "ARTIST PICK",
     colors: [BLUE, PINK, "#050505"],
     rating: "4.8 (88)",
@@ -139,7 +141,7 @@ const products: Product[] = [
     name: "Sunkim Beanie",
     price: "$28.00",
     category: "accessories",
-    image: "/assets/products/sunkim-beanie.png",
+    image: assetUrl("assets/products/sunkim-beanie.png"),
     tag: "NEW",
     colors: ["#050505", PINK],
     rating: "4.6 (74)",
@@ -150,7 +152,7 @@ const products: Product[] = [
     name: "Sunkim Headphones",
     price: "$79.00",
     category: "accessories",
-    image: "/assets/products/sunkim-headphones.png",
+    image: assetUrl("assets/products/sunkim-headphones.png"),
     tag: "LIMITED",
     colors: ["#050505", PINK],
     rating: "4.8 (94)",
@@ -161,7 +163,7 @@ const products: Product[] = [
     name: "Sunkim Jacket Patch",
     price: "$12.00",
     category: "accessories",
-    image: "/assets/products/sunkim-jacket-patch.png",
+    image: assetUrl("assets/products/sunkim-jacket-patch.png"),
     tag: "NEW",
     colors: ["#050505", PINK],
     rating: "4.6 (65)",
@@ -181,10 +183,10 @@ const categories: Category[] = [
 ];
 
 const detailImages = [
-  { src: "/assets/products/starburst-hoodie-detail.png", label: "Back view" },
-  { src: "/assets/products/starburst-hoodie-front.png", label: "Front view" },
-  { src: "/assets/products/starburst-hoodie-print.png", label: "Logo print" },
-  { src: "/assets/products/starburst-hoodie-cuff.png", label: "Cuff detail" }
+  { src: assetUrl("assets/products/starburst-hoodie-detail.png"), label: "Back view" },
+  { src: assetUrl("assets/products/starburst-hoodie-front.png"), label: "Front view" },
+  { src: assetUrl("assets/products/starburst-hoodie-print.png"), label: "Logo print" },
+  { src: assetUrl("assets/products/starburst-hoodie-cuff.png"), label: "Cuff detail" }
 ];
 
 function App() {
@@ -354,7 +356,7 @@ function HomePage({
           <ProductFloat product={products[0]} className="float-card float-hoodie" onProduct={onProduct} />
           <ProductFloat product={products[1]} className="float-card float-jacket" onProduct={onProduct} label="New drop" />
           <ProductFloat product={products[3]} className="float-card float-sneaker" onProduct={onProduct} />
-          <img className="mascot mascot-front" src="/assets/mascot/sunkim-front.png" alt="" />
+          <img className="mascot mascot-front" src={assetUrl("assets/mascot/sunkim-front.png")} alt="" />
           <div className="shout-badge">
             <span>Be Seen.</span>
             <span>Be Heard.</span>
@@ -401,7 +403,7 @@ function ShopPage({
           <div className="halftone halftone-blue" />
           <div className="halftone halftone-pink" />
           <ProductFloat product={products[3]} className="float-card shop-sneaker-card" onProduct={onProduct} />
-          <img className="mascot shop-mascot" src="/assets/mascot/sunkim-front.png" alt="" />
+          <img className="mascot shop-mascot" src={assetUrl("assets/mascot/sunkim-front.png")} alt="" />
           <div className="shout-badge shop-badge">
             <span>Be Seen.</span>
             <span>Be Heard.</span>
@@ -772,7 +774,7 @@ function TopSellers() {
 function CampaignBand({ onProduct }: { onProduct: (product: Product) => void }) {
   return (
     <section className="campaign-band">
-      <img src="/assets/mascot/sunkim-point.png" alt="" />
+      <img src={assetUrl("assets/mascot/sunkim-point.png")} alt="" />
       <h2>
         Be Seen.
         <span>Be Heard.</span>
@@ -804,7 +806,7 @@ function PromoCard() {
           Explore Now <Icon icon={ArrowRight01Icon} />
         </button>
       </div>
-      <img src="/assets/mascot/sunkim-point.png" alt="" />
+      <img src={assetUrl("assets/mascot/sunkim-point.png")} alt="" />
       <div className="halftone halftone-pink" />
     </aside>
   );
